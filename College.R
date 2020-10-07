@@ -1,0 +1,25 @@
+getwd()
+#Read in the Data
+College<-read.csv(file="C:/Users/micha/OneDrive/Documents/WebsiteHosting/College/College.csv",header=TRUE)
+attach(College)
+head(College)
+summary(College)
+pairs(College[,1:10],col="pink",pch=19)
+plot(Private,Outstate,xlab="Private University in US",ylab="OutState tuition in US",main="Outstate Plot",col="pink")
+#Create a new qualitative variable called Elite by binning the Top10perc variable. Where the variable Elite defines that more than 50% percent enrolled are in the top 10% of their class.
+Elite <- rep("No",nrow(College))
+Elite[College$Top10perc>50]="Yes"
+Elite<-as.factor(Elite)
+College<-data.frame(College,Elite)
+summary(College$Elite)
+plot(College$Elite,College$Outstate,xlab="Private University in US",ylab="OutState tuition in US",main="Outstate Plot",col="blue")
+par(mfrow=c(2,2))
+hist(College$Top25perc,col=2,xlab="Top 25 percent",ylab="Count")
+hist(College$PhD,col=3,xlab="PhD",ylab="Count")
+hist(College$Grad.Rate,col=4,xlab="Grad Rate",ylab="Count")
+hist(College$Expend,col=5,xlab="% Expend",ylab="Count")
+summary(Top25perc)
+summary(PhD)
+summary(Grad.Rate)
+summary(College$Expend)
+#There are some discrepancies in the data 
